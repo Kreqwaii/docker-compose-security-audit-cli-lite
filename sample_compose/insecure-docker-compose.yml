@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  web:
+    image: nginx:latest
+    privileged: true
+    network_mode: host
+    pid: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - API_SECRET=super_secret_hardcoded_123
+    ports:
+      - "80:80"
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: admin_password_123
+    ports:
+      - "5432:5432"
